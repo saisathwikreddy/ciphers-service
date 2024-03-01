@@ -26,3 +26,8 @@ jobs:
       run: |
         cd ciphers_project
         python manage.py test
+    - name: Build Image and push to registry
+      run: |
+        docker login --username saisathwikreddy --password ${{secrets.ACCESS_TOKEN}} ghcr.io
+                docker build -t ghcr.io/saisathwikreddy/cipher-service:latest --file Dockerfile .  
+                docker push ghcr.io/saisathwikreddy/cipher-service:latest 
